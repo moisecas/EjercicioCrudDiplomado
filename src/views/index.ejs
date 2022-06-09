@@ -1,0 +1,37 @@
+<%- include("partials/header")  %> 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input type="text" class="form-control" id="search" placeholder="Search">
+                </div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Evento</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Razón</th>
+                    <th scope="col">Estado</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i=0; i<tareas.lengt; i++){ %>
+                <tr>
+                    <td><%= tareas[i].evento %></td> <!-- tareas[i].numero, donde va iterando el ciclo -->
+                    <td><%= tareas[i].hora %></td>
+                    <td><%= tareas[i].razon %></td>
+                    <% } %> 
+            </tbody>
+        </table>    
+    </div>
+</div>
