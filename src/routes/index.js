@@ -1,15 +1,25 @@
-//rutas de la aplicación 
-const { Router } = require('express');
+const { Router }=require("express")
+const express=require("express")
+const router=express.Router()
 
-const express = require('express'); 
-const router = express.Router();
+const Task=require("../models/task")
 
-router.get("/", async(req, res) => {
-    const tasks = await task.find(); // busca todas las tareas en la base de datos y las guarda en la variable tasks 
-    console.log(tasks); // muestra todas las tareas en consola 
-    res.render("index",{tareas:task}); //busca en la carpeta views el archivo index.ejs y lo renderiza
+router.get("/", async(req,res)=>{
+    console.log("Ingresando a la ruta raiz")
+    const tasks = await Task.find()
+    console.log(tasks)
+    res.render("index",{tareas:tasks})
 })
 
-const task = require('../models/task');
+router.post("/add",(req,res)=>{
 
-module.exports = router;
+    const tarea=new Task(req.body)
+    await tarea.save()
+    res.redirect("/")
+})
+router.get("/delete",(req,res)=>{
+
+
+})
+
+module.exports=router

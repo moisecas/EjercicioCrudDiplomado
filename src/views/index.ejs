@@ -1,37 +1,58 @@
-<%- include("partials/header")  %> 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="">
-                <div class="form-group">
-                    <label for="">Title</label>
-                    <input type="text" class="form-control" id="search" placeholder="Search">
-                </div>
-                <div>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                </div>
-            </form>
+<%- include('partials/header') -%> 
+   
+<pre></pre>
+    <div class="container">
+        <div class="row">
+        <!-- FORM -->
+
+        <div class="col-md-5">
+         <div class="card">
+             <div class="card-body">
+                 <form action="/add" method="POST">
+                     <div class="form-group">
+                         <input  type="text" id="titulo" name="title" placeholder="Ingrese su titulo" class="form-control" required>
+                     </div>
+                     <div class="form-group">
+                        <textarea class="form-control" name="description"  cols="80" placeholder="Insert a description" required></textarea>
+                    </div>
+                    <button type="submit"  class="btn btn-primary btn-block">agregar</button>
+                 </form>
+             </div>
+         </div>
+
         </div>
-    </div>
-    <div class="col-md-7">
-        <table class="table">
+        <!-- TABLE -->
+
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Evento</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Razón</th>
-                    <th scope="col">Estado</th>
-                    
+                    <th>Numero</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Operation</th>
                 </tr>
             </thead>
             <tbody>
-                <% for (var i=0; i<tareas.lengt; i++){ %>
-                <tr>
-                    <td><%= tareas[i].evento %></td> <!-- tareas[i].numero, donde va iterando el ciclo -->
-                    <td><%= tareas[i].hora %></td>
-                    <td><%= tareas[i].razon %></td>
-                    <% } %> 
+                <% for(var i=0;i<tareas.length;i++){ %>
+                  <tr> 
+                      <td><%= i+1 %></td> 
+                      <td><%= tareas[i].title %></td>
+                      <td><%= tareas[i].description %></td>
+                      <td> 
+                          <a href="/cambiarEstado/<%= tareas[i]._id %>" class="btn <%= tareas[i].status ? 'btn-success' : 'btn-dark' %> ">Hecho</a>
+                          <a href="/delete/<%= tareas[i]._id %>" class="btn btn-danger">Delete</a>
+                          <a href="/edit/<%= tareas[i]._id %>" class="btn btn-info">edit</a>
+                        
+                      </td>
+                 </tr>  
+                    <% } %>  
             </tbody>
-        </table>    
+            </table>
+        </div>
+        </div>
+       
+        
     </div>
-</div>
+
+<%- include('partials/footer') -%> 
